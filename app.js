@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
   
 app.get("/", (req, res) => {
-  res.json({mensaje: "Hello World word"});
+  res.json({mensaje: "Hello new new world"});
 });
 
 async function listDatabases(client){
