@@ -1,10 +1,14 @@
 
 const express = require("express");
+const cors = require('cors');
+const dotenv = require('dotenv').config();
 const {MongoClient} = require('mongodb');
 const app = express();
+
+app.use(cors());
   
 app.get("/", (req, res) => {
-  res.send("Hello World world!");
+  res.json({mensaje: "Hello World word"});
 });
 
 async function listDatabases(client){
@@ -31,15 +35,13 @@ async function main() {
 }
 
 main().catch(console.error);
-
-
-console.log("asfas")
   
 app.post("/post", (req, res) => {
     console.log("Connected to React");
-    res.redirect("/");
+    res.send("un string");
   });
   
 const PORT = process.env.PORT || 8080;
+const HOST = process.env.HOST || "localhost";
   
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+app.listen(PORT, HOST, console.log(`Server started on port ${PORT}, asf ${HOST}`));
