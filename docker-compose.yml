@@ -1,23 +1,30 @@
 version: '3'
 
 services:
-  react:
-        container_name: react-app
-        stdin_open: true
-        build: ../podkins/.
-        ports:
-          - "3000:3000"
   node:
       container_name: podkins
       restart: always
       build: .
       ports:
         - "8080:8080"
-      links:
-        - mongo
+      networks: 
+        - podkins-network
+      volumes:
+        - .:/src/app
   mongo:
       container_name: mongodb
       image: mongo
       ports:
         - "27017:27017"
+      environment:
+      - MONGO_INITDB_DATABASE=mydatabase
+      - MONGO_INITDB_ROOT_USERNAME=podkins
+      - MONGO_INITDB_ROOT_PASSWORD=podkins
+      volumes:
+      - ./podkins-mongo-database:/data/db
+      networks: 
+        - podkins-network
 
+networks:
+  podkins-network:
+    name: podkins-network
