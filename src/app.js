@@ -5,10 +5,7 @@ const dotenv = require('dotenv').config();
 const mongoose = require('mongoose')
 const Model = require('./model')
 
-const user = "podkins";
-const password = "podkins";
-
-mongoose.connect(`mongodb://${user}:${password}@mongo`)
+mongoose.connect(`mongodb+srv://username:username@podkins.9xaed.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`)
     .then(db => console.log("db conect", db.connection.host))
     .catch(err => console.error(err));
 
